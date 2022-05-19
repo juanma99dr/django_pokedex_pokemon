@@ -4,6 +4,7 @@
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/styleIndex.css' %}">
+<p class="h5 mt-2 text-center text-dark"> Juan Manuel Díaz Rodríguez</p>
 
 <div class="position-absolute mt-5 top-50 start-50 translate-middle">
     <p class="mb-2 display-4 text-center text-white sombra"><img src="{% static '/images/logo.png' %}" alt="logotipo" width="50%" height="50%"></p>
@@ -16,6 +17,5 @@
     <div class="mt-5"> <a class="btn btn-danger btn position-absolute start-50 translate-middle" role="button"
             href="{% url 'pokemons' %}">Get Started</a>
     </div>
-    <p class="h5 text-dark"> Juan Manuel Díaz Rodríguez</p>
 </div>
 {% endblock %}
