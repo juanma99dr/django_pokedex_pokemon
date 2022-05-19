@@ -2,7 +2,7 @@
 
 {% block content %}
 {% if perms.pokedex.is_admin %}
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <table>
     {{ form.as_table }}
