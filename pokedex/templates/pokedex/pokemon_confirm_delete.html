@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% if perms.pokedex.is_admin %}
+<h1>Delete Pokemon</h1>
+
+<p>Are you sure you want to delete the pokemon: {{ pokemon }}?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" action="" value="Yes, delete." />
+</form>
+{% else %}
+You don´t have the required permissions.
+{% endif %}
+
+
+{% endblock %}

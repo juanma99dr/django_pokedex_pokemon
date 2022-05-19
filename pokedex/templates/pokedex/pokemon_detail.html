@@ -1,0 +1,72 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/stylePokedex.css' %}">
+<div class="row text-center mt-5 mb-3">
+    <div class="col">
+        {% if pokemon.numPokedex > 1 %}
+        <a href="{{ pokemon.get_absolute_urlPrev }}" class="btn btn-primary mb-5">Previous Pokémon</a>
+        {% endif %}
+    </div>
+    <div class="col">
+        {% if pokemon.numPokedex < 103 %}
+        <a href="{{ pokemon.get_absolute_urlNext }}" class="btn btn-primary mb-5">Next Pokémon</a>
+        {% endif %}
+
+    </div>
+    {{ num_pokemon }}
+
+    <div class="card mb-3">
+        <div class="row no-gutters">
+            <div class="col-md-4" style="background-color:#F2F2F2">
+                <img src="{{pokemon.image.url}}" class="card-img" alt="imagen pokemon">
+            </div>
+
+            <div class="col-md-8">
+
+                <div class="card-body">
+                    <h1 class="card-title">{{ pokemon.name }} <small class="text-muted">
+                            #{{ pokemon.numPokedex }}</small></h1>
+                    <p class="card-text mt-3">{{ pokemon.description }}</p>
+                    <p> Types: {{pokemon.display_type}}</p>
+                    <p class="card-text"><small class="text-muted">Generation: {{ pokemon.generation }}</small></p>
+                    {% if perms.pokedex.is_admin %}
+                    <a href="{% url 'pokemon_update' pokemon.numPokedex %}" class="btn btn-primary mb-5">Edit</a>
+                    <a href="{% url 'pokemon_delete' pokemon.numPokedex %}" class="btn btn-primary mb-5">Delete</a>
+
+                    {% endif %}
+
+                    <a href="{% url 'pokemons' %}" class="btn btn-primary mb-5">Explore more pokemon</a>
+
+                </div>
+                <p> STATS: </p>
+                <div class="progress mb-3 ">
+
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                        aria-valuenow="{{ pokemon.stats }}" aria-valuemin="0" aria-valuemax="100"
+                        style="width: {{ pokemon.stats }}%"></div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% if pokemon.evolutions %}
+<div class="text-center mb-5">
+    <h5>Evolution family</h5>
+    <div class="row">
+        {% for evolution in pokemon.evolutions.all %}
+        <div class="col mb-5 ">
+            <div class="card" style="background-color:#F2F2F2">
+                <a class="stretched-link" href="{{ evolution.get_absolute_url }}"> {{ evolution.image_tagView50 }} </a>
+                <p>{{ evolution.name }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/stylePokedex.css' %}">
+
+<h1 class="text-center mt-4">Pokemon list</h1>
+<a href="{% url 'pokemoninstance_create' %}" class="btn btn-primary mb-1">Create</a>
+
+{% if pokemoninstance_list %}
+<table class="table table-striped table-bordered table-hover mt-3 mb-5" border="1">
+    <th>Nickname</th>
+    <th>Pokemon</th>
+    <th>Level</th>
+    <th>Image</th>
+    {% for pokemoninst in pokemoninstance_list %}
+    <tr>
+        <td>
+            <a class="text-dark" style="text-decoration: none;"
+                href="{{ pokemoninst.get_absolute_url }}">{{ pokemoninst.nickname }}</a>
+        </td>
+        <td>
+            <a class="text-dark" style="text-decoration: none;"
+                href="{{ pokemoninst.get_absolute_url }}">{{ pokemoninst.pokemon }}</a>
+        </td>
+        <td>
+            <a class="text-dark" style="text-decoration: none;"
+                href="{{ pokemoninst.get_absolute_url }}">{{ pokemoninst.level }}</a>
+        </td>
+        <td>
+            <a class="text-center " style="background-color:#F2F2F2"
+                href="{{ pokemoninst.get_absolute_url }}">{{pokemoninst.pokemon.image_tag}}</a>
+        </td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    <p>You don't have any Pokemon.</p>
+</table>
+
+{% endif %}
+
+{% endblock %}

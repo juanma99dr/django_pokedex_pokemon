@@ -1,0 +1,42 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block content %}
+<div class="row text-center mt-5 mb-3">
+    <div class="card mb-3">
+        <div class="row no-gutters">
+            <div class="col-md-4" style="background-color:#F2F2F2">
+                <a class="stretched-link" href="{{ pokemoninstance.pokemon.get_absolute_url }}">
+                    <img src="{{pokemoninstance.pokemon.image.url}}" class="card-img" alt="imagen pokemon">
+                </a>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h1 class="card-title">{{ pokemoninstance.nickname }} </h1>
+                    <p class="card-text">Id: {{ pokemoninstance.identifier }}</p>
+                    <p class="card-text mt-3">Pokemon: {{ pokemoninstance.pokemon.name }}</p>
+                    <p class="card-text">Nº Pokedex: {{ pokemoninstance.pokemon.numPokedex }}</p>
+                    <p class="card-text">Level: {{ pokemoninstance.level }}</p>
+                    <p class="card-text">Date of Birth: {{ pokemoninstance.date_of_birth }}</p>
+                    <p class="card-text">Gender: {{ pokemoninstance.gender }}</p>
+                    <p class="card-text">Moves: {{ pokemoninstance.display_moves }}</p>
+                    <p> Types: {{pokemoninstance.pokemon.display_type}}</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    {% if perms.pokedex.is_admin %}
+<a href="{% url 'pokemoninstance_delete' pokemoninstance.identifier %}" class="btn btn-primary mb-1">Delete</a>
+
+{% endif %}
+    <a href="{% url 'change_pokemon_instance' pokemoninstance.identifier %}" class="btn btn-primary mb-5">Edit</a>
+<br>
+
+
+    <a href="{% url 'my-pokemon' %}" class="btn btn-primary mb-5">Go back</a>
+</div>
+{% endblock %}

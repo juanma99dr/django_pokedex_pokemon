@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/styleIndex.css' %}">
+
+<div class="position-absolute mt-5 top-50 start-50 translate-middle">
+    <p class="mb-2 display-4 text-center text-white sombra"><img src="{% static '/images/logo.png' %}" alt="logotipo" width="50%" height="50%"></p>
+    <p class="text-center h5 text-dark">
+        This application allows the user to consult a pokemon.
+        Register your own caught pokemon and have a record of them
+        in addition to being able to customize your own profile.
+    </p>
+    <!-- boton empezar -->
+    <div class="mt-5"> <a class="btn btn-danger btn position-absolute start-50 translate-middle" role="button"
+            href="{% url 'pokemons' %}">Get Started</a>
+    </div>
+    <p class="h5 text-dark"> Juan Manuel Díaz Rodríguez</p>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+{% block content %}
+{% if user.is_authenticated %}
+<h1>Change pokemon instance</h1>
+<p><b>Pokemon:</b> {{ PokemonInstance.pokemon.name }}</p>
+<p><b>Nickname:</b> {{ PokemonInstance.nickname }}</p>
+<p><b>Level:</b> {{ PokemonInstance.level }}</p>
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+        {{ form }}
+    </table>
+    <input type="submit" value="Submit" />
+</form>
+{% else %}
+You don´t have the required permissions.
+{% endif %}
+
+
+{% endblock %}

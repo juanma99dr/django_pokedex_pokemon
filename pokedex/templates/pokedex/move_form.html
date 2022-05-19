@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% if perms.pokedex.is_admin %}
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit" />
+
+</form>
+{% else %}
+You don´t have the required permissions.
+{% endif %}
+{% endblock %}

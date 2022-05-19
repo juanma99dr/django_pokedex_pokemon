@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<h1>Delete Pokemon Instance</h1>
+
+<p>Are you sure you want to delete the Pokemon: {{ pokemoninstance.nickname }}?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" action="" value="Yes, delete." />
+</form>
+{% else %}
+You don't have permission to delete the pokemon.
+{% endif %}
+{% endblock %}

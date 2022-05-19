@@ -1,0 +1,38 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/stylePokedex.css' %}">
+
+<div class="row text-center mt-5 mb-3">
+    <h1>Pokédex</h1>
+
+</div>
+{% if perms.pokedex.is_admin %}
+<div class="row text-center mt-5 mb-3">
+    <a href="{% url 'pokemon_create' %}" class="btn btn-primary mb-5">Add a new Pokemon</a>
+{% endif %}
+
+    {% if pokemon_list %}
+    <div class="row ">
+            {% for pokemon in pokemon_list %}
+ 
+            <div class="col mb-5 ">
+                <div class="card ">
+                    <a class="text-center "style="background-color:#F2F2F2" href="{{ pokemon.get_absolute_url }}">{{pokemon.image_tagView50}}</a> 
+                    <div class="card-body">
+                        <div class="text textoNumPokedex">#{{pokemon.numPokedex}}</div>   
+                        <p class="mb-0">{{ pokemon.name }}</p> 
+                        <p class="mt-0 mb-0">{{ pokemon.display_type }}</p>
+                    </div>
+                  </div>
+
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>ERROR, there are no pokemon in the pokedex.</p>
+    {% endif %}
+
+{% endblock %}

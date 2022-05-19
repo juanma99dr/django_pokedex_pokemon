@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% if perms.pokedex.is_admin %}
+<h1>Delete Move</h1>
+
+<p>Are you sure you want to delete the move: {{ move }}?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" action="" value="Yes, delete." />
+</form>
+{% else %}
+You don't have permissions to delete this move.
+{% endif %}
+
+{% endblock %}
