@@ -1,6 +1,5 @@
 from django.contrib import admin
 from .models import Pokemon, PokemonInstance, Gender, Generation, Type, Move, TrainerProfile, User
-from next_prev import next_in_order, prev_in_order
 admin.site.register(Gender)
 admin.site.register(Generation)
 admin.site.register(Type)
