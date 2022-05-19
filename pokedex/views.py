@@ -3,7 +3,6 @@ from django.views import generic
 from .models import Pokemon, PokemonInstance, Gender, Generation, Type, TrainerProfile, Move
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from next_prev import next_in_order, prev_in_order
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from .forms import PokemonInstanceForm
